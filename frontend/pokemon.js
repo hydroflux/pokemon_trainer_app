@@ -10,10 +10,15 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}/`)
         const pokeType = document.createElement('h2')
 
         spriteImage.src = pokemon.sprites.front_default
-        pokeTitle.textContent = pokemon.forms[0].name.toUpperCase()
-        pokeName.textContent = pokemon.forms[0].name.toUpperCase()
-        pokeType.textContent = pokemon.types[0].type.name.toUpperCase()
+        pokeTitle.textContent = pokemon.forms[0].name
+        pokeName.textContent = capitalize(pokemon.forms[0].name)
+        pokeType.textContent = capitalize(pokemon.types[0].type)
 
         document.head.append(pokeTitle)
         document.body.append(pokeName, spriteImage, pokeType)
     })
+
+const capitalize = (s) => {
+    if (typeof s !== 'string') return ''
+    return s.charAt(0).toUpperCase() + s.slice(1)
+    }
